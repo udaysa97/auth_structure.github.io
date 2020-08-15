@@ -1,0 +1,16 @@
+<html> 
+<head>
+    <title> <%= title %> </title>
+    <link rel="stylesheet" href="/css/layouts.css">
+    <%- style %>
+</head>
+<!-- footer using partial concept -->
+<%- include('_header'); %>
+
+<!-- whole body is picked from ejs file of particular page called from its controller for rendering-->
+<%- body %>
+
+<!-- footer using partial  -->
+<%- include('_footer'); %>
+<%- script %>
+</html>>
