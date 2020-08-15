@@ -1,0 +1,23 @@
+{
+  "name": "basic_auth_structure_scalable",
+  "version": "1.0.0",
+  "description": "Test + auth_bluePrint scalable",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udaysa97/auth_structure.github.io.git"
+  },
+  "author": "udaysa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udaysa97/auth_structure.github.io/issues"
+  },
+  "homepage": "https://github.com/udaysa97/auth_structure.github.io#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
