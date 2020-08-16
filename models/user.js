@@ -1,8 +1,8 @@
-const monsgoose  = require('mongoose');
+const mongoose  = require('mongoose');
 
 // Schema for saving user data in DB
 
-const userSchema = new monsgoose.Schema({
+const userSchema = new mongoose.Schema({
     email:{
         type:String,
         required:true,
@@ -20,6 +20,6 @@ const userSchema = new monsgoose.Schema({
     timestamps:true
 });
 
-const User = monsgoose.model('user',userSchema);
+const User = mongoose.model('user',userSchema);
 
 module.exports = User;

@@ -1,12 +1,12 @@
 const passport = require('passport');
 
-const localStrategy = require('passport-local');
+const localStrategy = require('passport-local').Strategy;
 
 const user = require('../models/user');
 
 // Creating strategy to authenticate user
 passport.use(new localStrategy({
-    userNameFeild:'email'
+    usernameField:'email'
 },(email,password,done)=>{
     user.findOne({email:email},(err,found)=>{
         if(err){
@@ -34,5 +34,21 @@ passport.deserializeUser((id,done)=>{
         return done(null,User);
     });
 });
+
+passport.checkAuthentication = (req,res,next)=>{
+    if(req.isAuthenticated()){
+        return next();
+    }
+    return res.redirect('/user/sign-in');
+}
+
+// this must be called in index.js to set identity
+passport.setAuthentication = (req,res,next)=>{
+    if(req.isAuthenticated()){
+        // get signedin user from session cookie and set to locals
+        res.locals.user = req.user;
+    }
+    next();
+}
 
 module.exports = passport;
