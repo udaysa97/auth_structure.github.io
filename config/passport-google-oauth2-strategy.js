@@ -5,8 +5,8 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 
 passport.use(new googleStategy({
-    clientID:'708981379897-he0v54m3p3317u1l0gq8q3hvgta6ejj1.apps.googleusercontent.com', // replace with your client ID
-    clientSecret:'1Ixa9V9uN3pXvbpDVh1Hzz44', // replace with your client secret
+    clientID:'red', // replace with your client ID
+    clientSecret:'red', // replace with your client secret
     callbackURL:'http://localhost:8000/user/auth/google/callback'
 },(accessToken,refreshToken,profile,done)=>{
     // check if user already registered with us

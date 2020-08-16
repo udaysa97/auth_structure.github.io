@@ -4,6 +4,6 @@ module.exports.home = (req,res)=>{
         return res.redirect('/user/profile');
     }
     return res.render('home',{
-        title:"hellos"
+        title:"hello"
     });
 }

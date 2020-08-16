@@ -6,6 +6,5 @@ router.get('/',homeController.home);
 router.use('/user',require('./user'));
 
 
-console.log("royer set");
 
 module.exports = router;

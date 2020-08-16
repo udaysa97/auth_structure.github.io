@@ -1,12 +1,16 @@
+<link rel="stylesheet" href="/css/user_sign_in.css">
 <ul>
     <% if(locals.user) {%> 
         <li><%= user.name %></li>
         <li> <%= user.email %></li>
-        <li><a href="/user/sign-out">sign-out</a></li>
-        <li><a href="/user/reset-password/<%= user._id %>">reset password</a></li>
+        <li><a class="underlineHover" href="/user/sign-out">sign-out</a></li>
+        <li><a class="underlineHover" href="/user/reset-password/<%= user._id %>">reset password</a></li>
+        
         
     <%  } else { %>
-        <a href="/user/sign-in">sign-in</a>
-        <a href="/user/sign-up">sign-up</a>
+        <div id="formFooter">
+            <a class="underlineHover" href="/user/sign-in">sign-in </a>
+            <a class="underlineHover" href="/user/sign-up">sign-up </a>
+          </div>
         <%} %>
 </ul>

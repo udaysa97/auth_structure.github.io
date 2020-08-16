@@ -96,22 +96,26 @@ module.exports.changePassword = (req,res)=>{
         // compare old password provided with current password
         if(err){
             console.log('ALERT:::Id tempered');
+            req.flash('error','id tempred');
             return res.redirect('back');
         }
         bcrypt.compare(req.body.old_password, found.password, function(err, resp) {
             if (err) return done(err);
             if (resp === false) {
                 // passwordMismatch notif
+                req.flash('error','old password incorrect');
                 console.log('old password wrong');
               return res.redirect('back');
             } else {
                 // if password matched check if pass and confirm pass match
                 if(req.body.new_password !== req.body.new_password_check){
+                    req.flash('error','new passwords dont match');
                     console.log('new password dont match');
                     return res.redirect('back'); 
                 }
                 // if new and old password same
                 if(req.body.old_password === req.body.new_password){
+                    req.flash('error','new password same as old');
                     console.log('old and new pass same!');
                     return res.redirect('back');
                 }
@@ -126,6 +130,7 @@ module.exports.changePassword = (req,res)=>{
                     console.log('password updated');
                 });
                 // show password success
+                req.flash('success','password changed');
               return res.redirect('back');
             }
           });
