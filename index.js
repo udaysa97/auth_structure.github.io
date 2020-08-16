@@ -9,6 +9,9 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy.js');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const mongoStore = require('connect-mongo')(session);
+const bcrypt = require('bcryptjs');
+const flash = require('connect-flash');
+const customWare = require('./config/middlewear');
 
 app.use(express.urlencoded());
 //to make app use cookieParser
@@ -50,6 +53,8 @@ app.use(passport.session());
 
 // set authenticated user (if any) from cookie
 app.use(passport.setAuthentication);
+app.use(flash());
+app.use(customWare.setFlash);
 
 // redirect all routes to index.js in routes folder
 app.use('/',require('./routes'));

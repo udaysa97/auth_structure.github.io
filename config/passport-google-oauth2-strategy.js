@@ -2,10 +2,11 @@ const passport = require('passport');
 const googleStategy = require('passport-google-oauth').OAuth2Strategy;
 const crypto = require('crypto');
 const User = require('../models/user');
+const bcrypt = require('bcryptjs');
 
 passport.use(new googleStategy({
-    clientID:'rand', // replace with your client ID
-    clientSecret:'rand', // replace with your client secret
+    clientID:'708981379897-he0v54m3p3317u1l0gq8q3hvgta6ejj1.apps.googleusercontent.com', // replace with your client ID
+    clientSecret:'1Ixa9V9uN3pXvbpDVh1Hzz44', // replace with your client secret
     callbackURL:'http://localhost:8000/user/auth/google/callback'
 },(accessToken,refreshToken,profile,done)=>{
     // check if user already registered with us
@@ -18,11 +19,15 @@ passport.use(new googleStategy({
             // user already registred with us
             return done(null,user);
         }else{
+            //creating random password and encrypting using bcrypt
+            let randomPass = crypto.randomBytes(20).toString('hex');
+            let salt = bcrypt.genSaltSync(10);
+            let hash = bcrypt.hashSync(randomPass, salt);
             // create user using data received from google
             User.create({
                 name:profile.displayName,
                 email:profile.emails[0].value,
-                password:crypto.randomBytes(20).toString('hex')
+                password:hash
             },(err,createdUser)=>{
                 if(err){
                     console.log("Error while creating user after google auth"+err);
